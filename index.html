@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>For Balara — A Birthday to Remember 💜</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Ambient nebula layers -->
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+    <div class="nebula nebula-3"></div>
+
+    <!-- Background & effect canvases -->
+    <canvas id="bgCanvas"></canvas>
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Transition wipe overlay -->
+    <div id="wipe"></div>
+
+    <!-- LOADER SCREEN -->
+    <div class="screen active" id="loader">
+        <div class="loader-container">
+            <div class="loader-eyebrow">A gift made just for you</div>
+            <div class="loader-title">For Balara</div>
+            <div class="loader-sub">Something beautiful is being prepared...</div>
+            <div class="progress-track">
+                <div class="progress-labels">
+                    <span>Gathering memories</span>
+                    <span id="pct">0%</span>
+                </div>
+                <div class="progress-bar-outer">
+                    <div class="progress-bar-inner" id="progressBar"></div>
+                </div>
+                <div class="progress-status" id="progressStatus">Weaving starlight together...</div>
+            </div>
+            <div class="loader-orbs">
+                <div class="loader-orb"></div>
+                <div class="loader-orb"></div>
+                <div class="loader-orb"></div>
+                <div class="loader-orb"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER 1 — Prologue -->
+    <div class="screen" id="ch1">
+        <div class="chapter">
+            <div class="glass-card">
+                <div class="progress-dots" id="dots1"></div>
+                <div class="chapter-num">Prologue</div>
+                <span class="chapter-icon">🌙</span>
+                <h1 class="chapter-title">Some stories begin<br><em>unexpectedly.</em></h1>
+                <p class="chapter-body">
+                    Not every great friendship announces itself with fanfare.<br>
+                    Sometimes it arrives loudly, chaotically — the kind of entrance you don't forget.<br><br>
+                    <strong>Balara arrived like that.</strong><br><br>
+                    A whirlwind of energy, laughter and pure, unfiltered life.
+                    At first glance? <span class="highlight">Maybe a little too much.</span><br>
+                    With time? Exactly enough.
+                </p>
+                <div class="cta-wrap">
+                    <button class="btn-primary" onclick="goTo(2)">Begin the story <span>→</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER 2 — First Impressions -->
+    <div class="screen" id="ch2">
+        <div class="chapter">
+            <div class="glass-card">
+                <div class="progress-dots" id="dots2"></div>
+                <div class="chapter-num">Chapter I — First Impressions</div>
+                <span class="chapter-icon">⚡</span>
+                <h1 class="chapter-title">She walked in and <em>the room shifted.</em></h1>
+                <p class="chapter-body">
+                    I'll be honest — and I think she already knows this.<br>
+                    My first thought was: <span class="highlight">"This one is chaotic."</span><br><br>
+                    The constant "bestie" energy. The laugh that fills any room it enters.
+                    The way she moves through the world like she belongs in every corner of it.<br><br>
+                    I underestimated something important:<br>
+                    <strong>that kind of energy is a rare and precious thing.</strong><br><br>
+                    Most people spend their whole lives trying to find it.
+                    She was born with it.
+                </p>
+                <div class="cta-wrap">
+                    <button class="btn-primary" onclick="goTo(3)">Continue <span>→</span></button>
+                    <button class="btn-ghost" onclick="goTo(1)">← Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER 3 — The Secret Choice -->
+    <div class="screen" id="ch3">
+        <div class="chapter">
+            <div class="glass-card">
+                <div class="progress-dots" id="dots3"></div>
+                <div class="chapter-num">Chapter II — A Small Secret</div>
+                <span class="chapter-icon">🌸</span>
+                <h1 class="chapter-title">What do you love most<br><em>about her?</em></h1>
+                <p class="chapter-body">Choose one truth — they're all real.</p>
+                <div class="choice-grid" id="choiceGrid">
+                    <div class="choice-card" onclick="selectChoice(this, 'laugh')">
+                        <span class="choice-emoji">😂</span>
+                        <div class="choice-label">Her laugh — it doesn't let you stay sad</div>
+                    </div>
+                    <div class="choice-card" onclick="selectChoice(this, 'heart')">
+                        <span class="choice-emoji">💜</span>
+                        <div class="choice-label">Her heart — she actually cares, deeply</div>
+                    </div>
+                    <div class="choice-card" onclick="selectChoice(this, 'vibe')">
+                        <span class="choice-emoji">✨</span>
+                        <div class="choice-label">Her vibe — makes everything feel alive</div>
+                    </div>
+                    <div class="choice-card" onclick="selectChoice(this, 'real')">
+                        <span class="choice-emoji">🔥</span>
+                        <div class="choice-label">Her realness — always and completely herself</div>
+                    </div>
+                </div>
+                <div class="cta-wrap">
+                    <button class="btn-primary" id="ch3Btn" onclick="goTo(4)" style="opacity:0.4; pointer-events:none;">Reveal what I chose <span>→</span></button>
+                    <button class="btn-ghost" onclick="goTo(2)">← Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER 4 — The Envelope & Letter -->
+    <div class="screen" id="ch4">
+        <div class="chapter">
+            <div class="glass-card">
+                <div class="progress-dots" id="dots4"></div>
+                <div class="chapter-num">Chapter III — Hidden Words</div>
+                <span class="chapter-icon">💌</span>
+                <h1 class="chapter-title">There's a letter<br><em>waiting for you.</em></h1>
+                <p class="chapter-body">Some things are easier to write than to say out loud.</p>
+
+                <div class="envelope-wrap">
+                    <div class="envelope" id="envelope" onclick="openEnvelope()">
+                        <div class="env-body">
+                            <div class="env-flap"></div>
+                            <div class="env-heart">💜</div>
+                        </div>
+                    </div>
+                    <div class="envelope-hint" id="envHint">Tap to open</div>
+
+                    <div class="letter-content" id="letterContent">
+                        <p class="letter-text">
+                            "I've watched you carry joy everywhere you go,<br>
+                            as if it costs you nothing — but I know it does.<br>
+                            I hope someone carries some of that joy back to you today.<br><br>
+                            Being around you is one of those quiet gifts<br>
+                            you don't always name until you look back and realize:<br>
+                            <em>that person made things better.</em><br><br>
+                            You make things better, Balara.<br>
+                            Never stop."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="cta-wrap" id="ch4Btn" style="opacity:0; transition:opacity 0.6s ease;">
+                    <button class="btn-primary" onclick="goTo(5)">One more chapter <span>→</span></button>
+                    <button class="btn-ghost" onclick="goTo(3)">← Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER 5 — The Truth -->
+    <div class="screen" id="ch5">
+        <div class="chapter">
+            <div class="glass-card">
+                <div class="progress-dots" id="dots5"></div>
+                <div class="chapter-num">Chapter IV — The Truth</div>
+                <span class="chapter-icon">⭐</span>
+                <h1 class="chapter-title">Here is what<br><em>I truly believe:</em></h1>
+                <p class="chapter-body">
+                    Some people pass through your life quietly.<br>
+                    Others leave a warmth you carry for years — even in the coldest rooms.<br><br>
+                    <strong>You are the second kind.</strong><br><br>
+                    The world doesn't always reward loud hearts and bright souls the way it should.
+                    But on this day, in this moment — <span class="highlight">you are seen, you are celebrated, you are loved.</span><br><br>
+                    Not just for your energy or your humor.<br>
+                    But for the person underneath all of that — <strong>the one who is sincere, warm, and wonderfully, beautifully real.</strong>
+                </p>
+                <div class="cta-wrap">
+                    <button class="btn-primary" onclick="goToFinal()">The final gift ✨</button>
+                    <button class="btn-ghost" onclick="goTo(4)">← Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FINAL GRAND CELEBRATION -->
+    <div class="screen" id="finalScreen">
+        <div class="final-card">
+            <div class="glass-card" style="text-align:center;">
+                <span class="final-crown">👑</span>
+                <div class="final-title">Happy Birthday,</div>
+                <div class="final-name">Balara</div>
+                <div class="final-divider"></div>
+                <p class="final-message">
+                    May this year be softer than the last — in all the right ways.<br>
+                    May your dreams stop waiting and start arriving.<br>
+                    May you laugh until your face hurts at least once a week.<br>
+                    May you know, on even the hardest days,<br>
+                    that <strong style="color:var(--lilac);">you are worth celebrating.</strong>
+                </p>
+                <div class="final-divider"></div>
+                <p class="final-message" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(1rem,2.2vw,1.2rem); color:rgba(255,248,255,0.7);">
+                    From someone who once thought you were too much...<br>
+                    and now knows you were just exactly right.
+                </p>
+                <div class="final-signature">— with so much love, on your special day 💜</div>
+                <div class="cta-wrap" style="justify-content:center;">
+                    <button class="btn-primary" onclick="restartExperience()">✦ Replay from the beginning</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden audio & iframe for ambient music -->
+    <audio id="bgMusic" loop preload="none"></audio>
+    <iframe id="ytFrame" style="position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;" allow="autoplay" frameborder="0"></iframe>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
